@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `clientAddress`.
  */
-class m180206_140319_create_clientAddress_table extends Migration
+class m180206_181151_create_clientAddress_table extends Migration
 {
     /**
      * @inheritdoc
@@ -23,7 +23,7 @@ class m180206_140319_create_clientAddress_table extends Migration
             'client_id' => 'int not null'
         ]);
 
-        $this->addForeignKey('clientAddress_client_id', 'clientAddress', 'client_id', 'clientAddress', 'id');
+        $this->addForeignKey('clientAddress_client_id', 'clientAddress', 'client_id', 'client', 'id');
 
     }
 
@@ -35,3 +35,4 @@ class m180206_140319_create_clientAddress_table extends Migration
         $this->dropTable('clientAddress');
     }
 }
+
