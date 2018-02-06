@@ -73,4 +73,32 @@ class ClientController extends Controller
         $this->redirect(['/client/list']);
     }
 
+    public function actionEdit()
+    {
+        $id = \Yii::$app->request->get('id');
+        $clientModel = Client::findOne($id);
+
+        if ( !$clientModel instanceof Client) {
+            throw new \yii\web\HttpException(404);
+        }
+
+        $clientAddress = ClientAddress::find()->where("client_id = $id");
+
+        $pagination = new Pagination(
+            [
+                'defaultPageSize' => 5,
+                'totalCount' => $clientAddress->count()
+
+            ]
+        );
+
+        $clientAddress = $clientAddress->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->orderBy('id DESC')
+            ->all();
+
+        $clientAddressModel = new ClientAddress();
+
+        return $this->render('edit', ['clientModel' => $clientModel, 'pagination' => $pagination, 'clientAddress' => $clientAddress, 'clientAddressModel' => $clientAddressModel]);
+    }
 }

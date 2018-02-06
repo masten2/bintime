@@ -37,9 +37,10 @@ class ClientAddress extends \yii\db\ActiveRecord
         return [
             [['postcode', 'countryCode', 'cityName', 'streetName', 'houseNumber', 'client_id'], 'trim'],
             [['postcode', 'countryCode', 'cityName', 'streetName', 'houseNumber'], 'required'],
-            [['postcode', 'client_id'], 'integer'],
-            [['cityName', 'streetName', 'houseNumber', 'apartmentNumber'], 'string', 'max' => 255],
+            [['client_id'], 'integer'],
+            [['cityName', 'streetName', 'houseNumber', 'apartmentNumber', 'postcode'], 'string', 'max' => 255],
             ['countryCode', 'string', 'max' => 2],
+            ['postcode', 'match', 'not' => true, 'pattern' => '/[^0-9]/', 'message' => 'Only numbers'],
             ['countryCode', 'match', 'not' => true, 'pattern' => '/[^a-zA-Z_-]/', 'message' => 'Only a-z letters'],
             [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => Client::className(), 'targetAttribute' => ['client_id' => 'id']],
         ];

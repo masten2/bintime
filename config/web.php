@@ -49,7 +49,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'client' => 'client/new',
+                'client/edit/<id>' => 'client/edit',
             ],
         ],
 

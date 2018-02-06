@@ -100,4 +100,17 @@ class Client extends \yii\db\ActiveRecord
         }
         return false;
     }
+
+    public function getGenderValue()
+    {
+        if ($this->gender == 1) {
+            return self::GENDER_MALE["value"];
+        }
+
+        if ($this->gender == 2) {
+            return self::GENDER_FEMALE["value"];
+        }
+
+        return self::GENDER_EMPTY["value"];
+    }
 }

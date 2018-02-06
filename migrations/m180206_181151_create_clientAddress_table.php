@@ -14,7 +14,7 @@ class m180206_181151_create_clientAddress_table extends Migration
     {
         $this->createTable('clientAddress', [
             'id' => $this->primaryKey(),
-            'postcode' => 'int not null',
+            'postcode' => 'varchar(255) not null',
             'countryCode' => 'varchar(255) not null',
             'cityName' => 'varchar(255) not null',
             'streetName' => 'varchar(255) not null',

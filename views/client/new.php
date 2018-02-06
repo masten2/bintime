@@ -1,12 +1,13 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+
 ?>
 
-<h2 class="text-center" style="margin-bottom: 40px;">Добавление нового пользователя</h2>
+    <h2 class="text-center" style="margin-bottom: 40px;">Добавление нового пользователя</h2>
 
 <?php $form = ActiveForm::begin(); ?>
-<h3 class="text-center">Данные пользователя:</h3>
+    <h3 class="text-center">Данные пользователя:</h3>
 <?= $form->field($clientModel, 'login')->textInput() ?>
 <?= $form->field($clientModel, 'password')->passwordInput() ?>
 <?= $form->field($clientModel, 'name')->textInput() ?>
@@ -14,7 +15,7 @@ use yii\widgets\ActiveForm;
 <?= $form->field($clientModel, 'gender')->dropDownList($clientModel->getGenderList()) ?>
 <?= $form->field($clientModel, 'mail')->input('mail') ?>
 
-<h3 class="text-center">Данные адреса:</h3>
+    <h3 class="text-center">Данные адреса:</h3>
 <?= $form->field($clientAddressModel, 'postcode')->textInput() ?>
 <?= $form->field($clientAddressModel, 'countryCode')->textInput() ?>
 <?= $form->field($clientAddressModel, 'cityName')->textInput() ?>

@@ -23,14 +23,12 @@ use yii\helpers\Html;
                 <li class="list-group-item col-sm-2"><?= $client->lastName ?></li>
                 <li class="list-group-item col-sm-2"><?= $client->mail ?></li>
                 <li class="list-group-item col-sm-2">
-                    <?php $form = ActiveForm::begin(['action' => ['/client/delete']]); ?>
-                    <button><span
-                                class="glyphicon glyphicon-pencil"><?= Html::hiddenInput('id', $client->getPrimaryKey()); ?></span>
-                    </button>
-                    <?php ActiveForm::end(); ?>
-                    <?php $form = ActiveForm::begin(['action' => ['/client/delete']]); ?>
-                    <button><span
-                                class="glyphicon glyphicon-remove-circle"><?= Html::hiddenInput('id', $client->getPrimaryKey()); ?></span>
+                    <a target="_blank" href="/client/edit/<?=$client->getPrimaryKey() ?>"><span class="glyphicon glyphicon-pencil"></a>
+                    <?php $form = ActiveForm::begin(['action' => ['/client/delete'], 'options' => [
+                        'style' => 'float: right; margin-top: -2px', 'class' => 'clearfix'
+                    ]]); ?>
+                    <button class="glyphicon glyphicon-remove-circle" style="float: right">
+                                <?= Html::hiddenInput('id', $client->getPrimaryKey()); ?>
                     </button>
                     <?php ActiveForm::end(); ?>
                 </li>
