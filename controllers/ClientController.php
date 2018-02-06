@@ -59,4 +59,18 @@ class ClientController extends Controller
         return $this->render('list', ['clients' => $clients, 'pagination' => $pagination]);
     }
 
+    public function actionDelete()
+    {
+        $id = \Yii::$app->request->post('id');
+        $client = Client::findOne($id);
+
+        if ($client instanceof Client)
+        {
+            ClientAddress::deleteAll("client_id = $id");
+            $client->delete();
+        }
+
+        $this->redirect(['/client/list']);
+    }
+
 }

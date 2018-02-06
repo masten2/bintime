@@ -1,17 +1,19 @@
 <?php
 use yii\widgets\LinkPager;
+use yii\widgets\ActiveForm;
+use yii\helpers\Html;
 
 ?>
 
     <div class="container">
         <h2>Страница пользователей</h2>
         <ul class="list-group clearfix">
-            <li class="list-group-item col-sm-2"  style="background: #dff0d8">id</li>
-            <li class="list-group-item col-sm-2"  style="background: #dff0d8">Логин</li>
-            <li class="list-group-item col-sm-2"  style="background: #dff0d8">Имя</li>
-            <li class="list-group-item col-sm-2"  style="background: #dff0d8">Фамилия</li>
-            <li class="list-group-item col-sm-2"  style="background: #dff0d8">Почта</li>
-            <li class="list-group-item col-sm-2"  style="background: #dff0d8">Действия</li>
+            <li class="list-group-item col-sm-2" style="background: #dff0d8">id</li>
+            <li class="list-group-item col-sm-2" style="background: #dff0d8">Логин</li>
+            <li class="list-group-item col-sm-2" style="background: #dff0d8">Имя</li>
+            <li class="list-group-item col-sm-2" style="background: #dff0d8">Фамилия</li>
+            <li class="list-group-item col-sm-2" style="background: #dff0d8">Почта</li>
+            <li class="list-group-item col-sm-2" style="background: #dff0d8">Действия</li>
         </ul>
         <?php foreach ($clients as $client): ?>
             <ul class="list-group clearfix list-group-item-text">
@@ -21,8 +23,16 @@ use yii\widgets\LinkPager;
                 <li class="list-group-item col-sm-2"><?= $client->lastName ?></li>
                 <li class="list-group-item col-sm-2"><?= $client->mail ?></li>
                 <li class="list-group-item col-sm-2">
-                    <a href="/"><span class="glyphicon glyphicon-pencil"></span></a>
-                    <a href="/" style="float: right"><span class="glyphicon glyphicon-remove-circle"></span></a>
+                    <?php $form = ActiveForm::begin(['action' => ['/client/delete']]); ?>
+                    <button><span
+                                class="glyphicon glyphicon-pencil"><?= Html::hiddenInput('id', $client->getPrimaryKey()); ?></span>
+                    </button>
+                    <?php ActiveForm::end(); ?>
+                    <?php $form = ActiveForm::begin(['action' => ['/client/delete']]); ?>
+                    <button><span
+                                class="glyphicon glyphicon-remove-circle"><?= Html::hiddenInput('id', $client->getPrimaryKey()); ?></span>
+                    </button>
+                    <?php ActiveForm::end(); ?>
                 </li>
             </ul>
         <?php endforeach; ?>
